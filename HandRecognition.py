@@ -26,6 +26,8 @@ hands = mp_hands.Hands(max_num_hands = 2, min_detection_confidence = 0.8)
 mp_draw = mp.solutions.drawing_utils
  
  
+is_exit = False
+
  
 while True:
     success,img = camera.read()
@@ -66,8 +68,9 @@ while True:
                 """
                
                 if fingers_num == 20 and landmark.y > hand_landmarks.landmark[2].y:
-                     break
-                     print("Exit")
+                     is_exit=True
+                     print("exit")
+                      
                
                 
                 
@@ -75,7 +78,10 @@ while True:
                 
                  
             mp_draw.draw_landmarks(img,hand_landmarks,mp_hands.HAND_CONNECTIONS)
-     
+    if is_exit:
+        break
+    
+    
     cv2.imshow("Camera",img)
     if cv2.waitKey(1) &  0xFF == ord("q"): # When you click two time  q camera is shutdown
         break
