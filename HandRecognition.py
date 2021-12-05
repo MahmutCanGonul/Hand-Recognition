@@ -38,7 +38,7 @@ while True:
     hand_process = hands.process(imgRGB)
     
     height,width,channel = img.shape
-    count_time+=1
+    
     if hand_process.multi_hand_landmarks != None:
     
         for hand_landmarks in hand_process.multi_hand_landmarks:
